@@ -17,12 +17,13 @@ def get_command_args():
                         default=1)
 
     return parser.parse_args()
-    
+
 
 class PassGenerator():
-    
+    '''Fuck this linter'''
     def __init__(self, strength, length, number, filename):
         self.passwords = []
+        self.pass_dict = ''
         self.strength = strength
         self.length = length
         self.filename = filename
@@ -43,8 +44,8 @@ class PassGenerator():
             case _:
                 raise ValueError('Available arguments: pin, low, medium, strong')
 
-   
-        for pass_unit in range(self.number):
+
+        for i in range(self.number):
             password = ''.join(random.choice(self.pass_dict) for i in range(self.length))
             self.passwords.append(password) 
     
@@ -56,7 +57,7 @@ class PassGenerator():
                 exit('Interrupted')
         
         try:
-            with open(filename, 'w') as f:
+            with open(filename, 'w', encoding='utf-8') as f:
                 f.write('\n'.join(data))
                 f.write('\n')
             print('Done!')
@@ -83,5 +84,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
